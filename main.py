@@ -10,8 +10,10 @@ soup = BeautifulSoup(page.content, "html.parser")
 
 results = soup.find_all("li", {"class": "tabbedBrowse-productListing-container only-allow-small-pricingSummary"})
 
+models = ['20YM001DUS','20YM001EUS']
+
 for result in results:
-    if result.attrs['data-code'] == '20YM001DUS' or result.attrs['data-code'] == '20YM001EUS':
+    if result.attrs['data-code'] in models:
         status = result.find("div", {"class": "merch-tagLabel-ribbon modelCust__ribbon taglabel-font-sm"}).get_text()
         if status != "Temporarily Unavailable":
             print("Here!")
